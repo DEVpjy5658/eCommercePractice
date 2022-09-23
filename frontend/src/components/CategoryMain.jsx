@@ -1,8 +1,20 @@
-import React from 'react'
-import { category } from '../data'
+import axios from 'axios';
+import React, {useState, useEffect } from 'react'
+// import { category } from '../data'
 import '../styles/categoryMain.css'
 
 const CategoryMain = () => {
+
+    const [category, setCategory] = useState([]); //default is empty database or json, no category
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('/api/category');
+      setCategory(result.data);
+    }
+    fetchData();
+  }, []);
+  
   return (
     <div className="c-container">
         <div className="c-row">

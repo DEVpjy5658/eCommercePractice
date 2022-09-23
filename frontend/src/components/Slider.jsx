@@ -1,8 +1,9 @@
+import axios from 'axios'
 import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../styles/slider.css'
-import React, {useState} from 'react'
-import { sliderItems } from '../data'
+import React, {useState, useEffect} from 'react'
+//import { sliderItems } from '../data'
 
 const Slider = () => {
 
@@ -18,10 +19,21 @@ const Slider = () => {
     }
 
   }
+
+  const [slider, setSlider] = useState([]) //default is empty database or json, no sliders
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('/api/slider');
+      setSlider(result.data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className='s-container'>
         <div className="wrapper" slideIndex={slideIndex} style={{transform: `translateX(${slideIndex * - 100}vw)`}}>
-          {sliderItems.map((item) => (
+          {slider.map((item) => (
             <div className="slide" key={item._id}>
               <div className="img-container">
                 <img src={item.image} className='s-img' alt="" />

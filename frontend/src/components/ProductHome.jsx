@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import '../styles/producthome.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,7 @@ import Quick from './Quick'
 const ProductHome = ({item}) => {
 
   const [open, setOpen] = useState(false);
-
+  
   return (
     <div className='hp-card'>
         <div className="card-header">
@@ -23,8 +23,8 @@ const ProductHome = ({item}) => {
             <button><FontAwesomeIcon icon={faHeart} /></button>
             <button><FontAwesomeIcon icon={faShoppingBag} /></button>
         </div>
-        {open && <Quick item={item}/>}
-        
+
+        {open && <Quick item={item} />}
     </div>
   )
 }
